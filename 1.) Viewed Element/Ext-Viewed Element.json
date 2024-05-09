@@ -1,0 +1,46 @@
+{
+    "plugin_type": "widget",
+    "name": "Viewed Element",
+    "edit_page_url": "https://demonchronicles.com",
+    "form_schema": [
+      {
+        "name": "push_type",
+        "options": {
+          "choices": [
+            {
+              "value": "attribute",
+              "label": "Attribute"
+            },
+            {
+              "value": "event",
+              "label": "Event"
+            }
+          ]
+        },
+        "label": "Push Type",
+        "default_value": "attribute",
+        "field_type": "toggle"
+      },
+      {
+        "name": "key_name",
+        "options": null,
+        "label": "Key Name",
+        "default_value": "",
+        "field_type": "text"
+      },
+      {
+        "name": "observe_element",
+        "options": null,
+        "label": "Element to observe",
+        "default_value": "",
+        "field_type": "selector"
+      }
+    ],
+    "description": "Extension to send an event or push an attribute based on an element being seen in the browser viewport.",
+    "options": {
+      "html": "",
+      "css": "",
+      "apply_js": "const observer = new IntersectionObserver(entries => {\n  entries.forEach(entry => {\n    // If the target element is intersecting with the viewport\n    if (entry.isIntersecting) {\n      //console.log('Element is in view!');\n      \n      // Only if there is a key_name defined\n      if (extension.key_name !== 0) {\n        var pushData;         \n        // Check for event or attribute configuration\n      \tif (extension.push_type === 'attribute') {\n          pushData = {type: \"user\", attributes: {}};\n          pushData.attributes[extension.key_name] = true;          \n      \t} else {\n          pushData = {type: \"event\", \"eventName\": extension.key_name};\n        }\n        // Push the event or the attribute\n        window.optimizely.push(pushData);\n      }\n      \n      observer.disconnect();\n    }\n  });\n});\n\nconst utils = window.optimizely.get('utils');\n// Wait for the footer element to appear in the DOM, then change the color\nutils.waitForElement(extension.observe_element).then(function(element) {\n  observer.observe(element);\n});\n",
+      "undo_js": "const extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\nif (extensionElement) {\n  extensionElement.parentElement.removeChild(extensionElement);\n}\n"
+    }
+  }
