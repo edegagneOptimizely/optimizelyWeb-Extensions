@@ -1,11 +1,11 @@
-## Element Viewed
+## Viewed Element
 
 <img src="../img/opti_logo.png" align="right" alt="Optimizely" width="60" height="60" />
 
 Extension to push an event or an attribute based on an element being seen in the browser viewport.
 
 <p align="left">
-  <img src="../img/extension_editor.png" alt="Visitor type segmentation" width="750" border="1" style="border: 1px solid grey;" />
+  <img src="../img/viewed_element.png" alt="Visitor type segmentation" width="750" border="1" style="border: 1px solid grey;" />
 </p>
 
 ### To use
