@@ -2,7 +2,7 @@
 
 <img src="../img/opti_logo.png" align="right" alt="Optimizely" width="60" height="60" />
 
-Extension to push an event or an attribute based on an element being seen in the browser viewport.
+Extension to push an event or an attribute based on an element being seen in the browser viewport. This extension can be configured to push either an event or an attribute.
 
 <p align="left">
   <img src="../img/viewed_element.png" alt="Viewed element extension" width="750" border="1" style="border: 1px solid grey;" />
